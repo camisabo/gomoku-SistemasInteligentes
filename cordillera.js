@@ -38,7 +38,7 @@ class Criba {
             this.criticos[i] = [];
             for (var j = 0; j < size; j++) {
                 this.pesos[i][j] = [0,0,0,0,0,0,0,0,0,0];
-                this.criticos[i][j] = [0,0,0];
+                this.criticos[i][j] = [0,0,0,0];
             }
         }
     }
@@ -131,20 +131,25 @@ class Criba {
         }
     }
 
-    calcularCriticos() {
+    calcularCriticos(move_state) {
         var size = this.size;
         for(var i = 0; i < size; i++) {
             for(var j = 0; j < size; j++) {
                 this.criticos[i][j][0] = Math.max(this.pesos[i][j][0], this.pesos[i][j][1], this.pesos[i][j][2], this.pesos[i][j][3]);
                 this.criticos[i][j][1] = Math.max(this.pesos[i][j][4], this.pesos[i][j][5], this.pesos[i][j][6], this.pesos[i][j][7]);
                 this.criticos[i][j][2] = 2 * Math.min(this.criticos[i][j][0], this.criticos[i][j][1]);
+                if(this.criticos[i][j][1] !== 0 && move_state == 'B'){
+                    this.criticos[i][j][3] = this.criticos[i][j][0]/this.criticos[i][j][1] *  Math.add(this.pesos.slice(0,5))/Math.add(this.pesos.slice(4,9)) * this.criticos[i][j][2]/5
+                } else if(this.criticos[i][j][0] !== 0 && move_state == 'W'){
+                    this.criticos[i][j][3] = this.criticos[i][j][0]/this.criticos[i][j][1] *  Math.add(this.pesos.slice(0,5))/Math.add(this.pesos.slice(4,9)) * this.criticos[i][j][2]/5
+                }
             }
         }
     }
 }
 
 class ArbolOptimizacion {
-    constructor(criba, board, maxDepth = 4, maxBranches = 5) {
+    constructor(criba, board, maxDepth = 6, maxBranches = 15) {
         this.criba = criba;
         this.maxDepth = maxDepth;
         this.maxBranches = maxBranches;
