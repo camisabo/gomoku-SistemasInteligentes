@@ -13,6 +13,7 @@
 	<script type='text/javascript' src='https://jgomezpe.github.io/konekti/src/konekti.js'></script>
 	<script type='text/javascript' src='gomoku.js'></script>
 	<script type='text/javascript' src='cordillera.js'></script>
+	<script type='text/javascript' src='tactico.js'></script>
 </head>
 
 <body>
@@ -29,7 +30,9 @@ function KonektiMain(){
         'rand1': new RandomPlayer(),
         'rand2': new RandomPlayer(),
 		'cordillera1': new CordilleraPlayer(),
-		'cordillera2': new CordilleraPlayer()
+		'cordillera2': new CordilleraPlayer(),
+		'tactico1': new TacticoPlayer(),
+		'tactico2': new TacticoPlayer()
     })
 
 	Konekti.header('title','', 'Gomoku', 3, {'class':'w3-black w3-center'} )
