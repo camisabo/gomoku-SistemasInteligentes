@@ -17,7 +17,7 @@ class TacticoPlayer extends Agent {
         return this.encontrarMejorMovimiento(
             board,
             moveState,
-            Date.now() + Math.max(1, Math.min(1000, availableTime * 0.35)),
+            Date.now() + Math.max(1, Math.min(150, availableTime * 0.1)),
             candidates
         );
     }
@@ -106,7 +106,7 @@ class TacticoPlayer extends Agent {
                     board[ny][nx] === ' ') openEnds++;
             }
 
-            if (count >= 5) score += 10000000;
+            if (count >= 5) score += 5000000;
             else if (count === 4) score += openEnds === 2 ? 500000 : 50000;
             else if (count === 3) score += openEnds === 2 ? 12000 : 1500;
             else if (count === 2) score += openEnds === 2 ? 300 : 60;

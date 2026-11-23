@@ -479,7 +479,7 @@ class ArbolOptimizacion {
             }
         }
         var availableTime = Number.isFinite(time) ? time : 1000;
-        var deadline = Date.now() + Math.max(1, Math.min(1000, availableTime * 0.35));
+        var deadline = Date.now() + Math.max(1, Math.min(150, availableTime * 0.1));
 
         for (var depth = 1; depth <= this.maxDepth; depth++) {
             var bestEval = -Infinity;
